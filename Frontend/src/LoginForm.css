@@ -1,0 +1,79 @@
+/* LoginForm.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #dde7b6;
+
+  
+}
+
+.login-form {
+  width: 400px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: #e5e8dc;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a2b2b;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #070606;
+  margin-right:500px;
+  font-size: 18px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #c61919;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #e6d9da;
+  margin-top: 10px;
+}
+
+.login-button {
+  width: 50%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #2577cd;
+  border: none;
+  border-radius: 4px;
+  color: #d3e6d7;
+  cursor: pointer;
+  margin-left: 75px;
+  margin-top: 15px;
+}
+
+.login-button:hover {
+  background-color: #778695;
+  
+}
+
+.hello{
+  font-size: 30px;
+  font-style:dark;
+  font-weight: bold;
+  color: #2e4637;
+  margin-right: 10px;
+  margin-bottom: 20px;
+;
+}

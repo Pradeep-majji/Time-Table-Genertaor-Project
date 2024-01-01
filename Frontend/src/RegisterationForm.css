@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30px;
+  font-size: 15px;
+  height:100vh;
+
+  
+
+}
+
+.register {
+  text-align: center;
+  font-size:31px;
+  margin-top: -30px;
+  margin-left:15px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #3f8ab5;
+  display:flex;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color:#0c0c0c;
+  margin-right: 10px;
+  text-align: right;
+
+ 
+}
+
+input {
+  padding: 6px;
+  width: 250px;
+  border-color: #66941c;
+  border: 1px solid #26708d;
+  border-radius: 5px;
+  font-size: 16px;
+
+}
+
+input:focus {
+  outline: none;
+  border-color: #6a4e4e;
+}
+
+button[type="submit"] {
+  padding: 10px 50px;
+  background-color: #2577cd;
+  color: rgb(7, 7, 7);
+  border-radius: 5px;
+  margin-right: -35px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 5px;
+  
+  
+}
+input[type="password"]{
+  box-sizing: right,10px;
+  margin-right: 25px;
+}
+.register-form-group{
+  width: 440px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: #d8d8d1;
+  box-shadow: 0px 2px 6px rgba(20, 180, 100, 21);
+  
+}

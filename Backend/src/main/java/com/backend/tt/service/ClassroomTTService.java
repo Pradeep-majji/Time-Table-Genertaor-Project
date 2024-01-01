@@ -1,0 +1,36 @@
+package com.backend.tt.service;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.backend.tt.entity.ClassroomTTEntity;
+import com.backend.tt.repository.ClassroomTTRepository;
+
+
+@Service
+public class ClassroomTTService {
+
+	@Autowired
+	ClassroomTTRepository ClassroomTTRepository;
+	
+	@Transactional(readOnly=true)
+	public ClassroomTTEntity getOneUser(String cid) {
+		Optional<ClassroomTTEntity> u=ClassroomTTRepository.findById(cid);
+		if(u.isPresent())
+			return u.get();
+		return null;
+	}
+	@Transactional
+	public boolean insertUser(ClassroomTTEntity ur)
+	{
+		return ClassroomTTRepository.save(ur)!=null;
+	}
+	@Transactional
+	public boolean modifyUser(ClassroomTTEntity ur)
+	{
+		return ClassroomTTRepository.save(ur)!=null;
+	}
+	
+}
