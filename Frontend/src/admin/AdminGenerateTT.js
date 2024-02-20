@@ -83,13 +83,82 @@ const  AdminGenerateTT = () => {
   return (
     <div>
         <AdminNavbar/>
-        <button className="btn btn-primary" onClick={handleGenerate}>
+      <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+      <div>
+        <button className="btn btn-primary" onClick={handleGenerate} style={{marginTop:'20px',marginRight:'30px'}}>
         Generate
       </button>
-      <br/>
-      <button className="btn btn-danger" onClick={handleReset}>
+      <button className="btn btn-danger" onClick={handleReset} style={{marginTop:'20px',marginRight:'30px'}}>
         Reset
       </button>
+    </div>
+    <br/>
+    <h1>Time Table Preview </h1>
+    <table border="1" >
+          <thead>
+            <tr>
+              <th>Days/Periods</th>
+              <th>PERIOD-1</th>
+              <th>PERIOD-2</th>
+              <th>Break</th>
+              <th>PERIOD-3</th>
+              <th>PERIOD-4</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+            <th>Monday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Period-3</td>
+            <td>Period-4</td>
+          </tr>
+          <tr>
+            <th>Tuesday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Period-3</td>
+            <td>Period-4</td>
+          </tr>
+          <tr>
+            <th>Wednesday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Period-3</td>
+            <td>Period-4</td>
+          </tr>
+          <tr>
+            <th>Thursday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Period-3</td>
+            <td>Period-4</td>
+          </tr>
+          <tr>
+            <th>Friday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Period-3</td>
+            <td>Period-4</td>
+          </tr>
+          <tr>
+            <th>Saturday</th>
+            <td>Period-1</td>
+            <td>Period-2</td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+    </div>
     </div>
   )
 }

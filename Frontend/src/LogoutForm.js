@@ -8,9 +8,9 @@ const LogoutForm = () => {
     navigate('/');
   }
   return (
-    <div>
+    <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'center',alignItems: 'center',marginTop:'300px'}}>
       <h1>are you sure to logout</h1>
-      <button onClick={handleTOMain}>click me to logout</button>  
+      <button onClick={handleTOMain} className="btn btn-danger">click me to logout</button>  
     </div>
   )
 }

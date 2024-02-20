@@ -3,47 +3,37 @@
   flex-direction: column;
   align-items: center;
   margin-right: 30px;
-  font-size: 15px;
-  height:100vh;
-
-  
-
+  font-size: 16px;
+  height: 140vh;
 }
 
 .register {
   text-align: center;
-  font-size:31px;
-  margin-top: -30px;
-  margin-left:15px;
+  margin-top: 20px;
   font-size: 30px;
   font-weight: bold;
-  color: #3f8ab5;
-  display:flex;
+  color: #030303;
 }
 
-.form-group {
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #0c0c0c;
+  text-align: left;
+}
+
+.input {
+  width: 300px;
   margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 25px;
-  font-weight: bold;
-  color:#0c0c0c;
-  margin-right: 10px;
-  text-align: right;
-
- 
-}
-
 input {
-  padding: 6px;
-  width: 250px;
-  border-color: #66941c;
-  border: 1px solid #26708d;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-
 }
 
 input:focus {
@@ -54,25 +44,32 @@ input:focus {
 button[type="submit"] {
   padding: 10px 50px;
   background-color: #2577cd;
-  color: rgb(7, 7, 7);
+  color: #fff;
   border-radius: 5px;
-  margin-right: -35px;
   border: none;
   cursor: pointer;
-  font-size: 15px;
-  margin-top: 5px;
-  
-  
+  font-size: 16px;
+  margin-top: 20px;
 }
-input[type="password"]{
-  box-sizing: right,10px;
-  margin-right: 25px;
-}
-.register-form-group{
-  width: 440px;
-  padding: 40px;
+
+.register-form-group {
+  width: 400px;
+  padding: 30px;
   border-radius: 8px;
-  background-color: #d8d8d1;
-  box-shadow: 0px 2px 6px rgba(20, 180, 100, 21);
-  
+  background-color: #f3f3f3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h6 {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+h6 a {
+  color: #2577cd;
+  text-decoration: none;
+}
+
+h6 a:hover {
+  text-decoration: underline;
 }

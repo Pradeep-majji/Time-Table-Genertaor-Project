@@ -33,9 +33,13 @@ const AdminAddClassrooms = () => {
   return (
     <div>
       <AdminNavbar />
-      <button onClick={handleRegister}>add classroom</button>
+      <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+      <div>
       <h1>Classrooms List</h1>
-      <table border="1" width="100%">
+      <button onClick={handleRegister} style={{background:'transparent',marginBottom:'20px'}}>add classroom</button>
+      <table border="1">
         <thead>
           <tr>
             <th>ID</th>
@@ -59,6 +63,9 @@ const AdminAddClassrooms = () => {
           ))}
         </tbody>
       </table>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import {React,useState,useEffect} from 'react'
 import IndexNavbar from './IndexNavbar';
 import LoginService from './LoginService';
 import { useNavigate } from 'react-router-dom';
+import './ContactPage.css'
 
 const HomePage = () => {
 
@@ -25,9 +26,12 @@ const HomePage = () => {
 
   return <div>
         <IndexNavbar/>
-        <div>
+        <div className='container-1'>
+      <div className='watermark-1'></div>
+      <div className='text-content'>
+      <div>
       <h1>CLASSES List</h1>
-      <table border="1" width="100%">
+      <table border="1" >
         <thead>
           <tr>
             <th>CID</th>
@@ -51,7 +55,10 @@ const HomePage = () => {
           ))}
         </tbody>
       </table>
-    </div>   
+    </div>
+        </div>
+    </div>
+         
     </div>            
       
 };

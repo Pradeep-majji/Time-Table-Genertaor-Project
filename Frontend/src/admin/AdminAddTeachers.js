@@ -2,6 +2,7 @@ import {React,useState,useEffect} from 'react'
 import AdminNavbar from './AdminNavbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Admin.css'
 
 const AdminAddTeachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -75,9 +76,14 @@ const AdminAddTeachers = () => {
   return (
     <div>
         <AdminNavbar/>
-        <div>
+        <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+      <div>
       <h1>Teachers List</h1>
-      <table border="1" width="100%">
+    <button onClick={handleRegister} style={{background:'transparent',marginBottom:'20px'}}>click to add teachers</button>
+    <br />
+      <table border="1">
         <thead>
           <tr>
             <th>TID</th>
@@ -103,7 +109,8 @@ const AdminAddTeachers = () => {
         </tbody>
       </table>
     </div>
-    <button onClick={handleRegister}>click to add teachers</button>
+    </div>
+    </div>
     </div>
   )
 }

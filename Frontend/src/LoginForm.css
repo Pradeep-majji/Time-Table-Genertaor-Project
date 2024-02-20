@@ -2,12 +2,11 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
+  background-color: #80eee8;
+  margin-left: 130px;
   height: 100vh;
-  background-color: #dde7b6;
-
-  
 }
 
 .login-form {

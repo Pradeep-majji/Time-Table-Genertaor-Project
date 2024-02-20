@@ -25,8 +25,14 @@ const AdminAddSubjects = () => {
   return (
     <div>
         <AdminNavbar/>
-        <h1>Subjects List</h1>
-        <table border="1" width="100%">
+        <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+      <div>
+      <h1>Subjects List</h1>
+    <button onClick={handleRegister} style={{background:'transparent',marginBottom:'20px'}}>click to add Subjects</button>
+    <br />
+        <table border="1">
         <thead>
           <tr>
             <th>SID</th>
@@ -45,7 +51,9 @@ const AdminAddSubjects = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={handleRegister}>click to go to add subjects</button>
+    </div>
+    </div>
+    </div>
     </div>
   )
 }

@@ -68,45 +68,74 @@ const AllotmentForm = () => {
   return (
     <div>
       <h1>Allotment Form</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          SID:
-          <input type="text" name="sid"  value={formData.sid} onChange={handleChange} />
-        </label>
-        <br />
-
-        <label>
-          CID:
-          <input type="text" name="cid" value={formData.cid} onChange={handleChange} />
-        </label>
-        <br />
-
-        <label>
-          TID:
-          <input type="text" name="tid" value={formData.tid} onChange={handleChange} />
-        </label>
-        <br />
-
-        <label>
-          Sem:
-          <input type="text" name="sem" value={formData.sem} onChange={handleChange} />
-        </label>
-        <br />
-
-        <label>
-          Batch:
-          <input type="text" name="batch" value={formData.batch} onChange={handleChange} />
-        </label>
-        <br />
-
-        <label>
-          Type:
-          <input type="text" name="type" value={formData.type} onChange={handleChange} />
-        </label>
-        <br />
-
-        <button type="submit">Submit</button>
-      </form>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
+      <label style={{ marginBottom: '10px' }}>
+        SID:
+        <input
+          type="text"
+          name="sid"
+          value={formData.sid}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        CID:
+        <input
+          type="text"
+          name="cid"
+          value={formData.cid}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        TID:
+        <input
+          type="text"
+          name="tid"
+          value={formData.tid}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        Sem:
+        <input
+          type="text"
+          name="sem"
+          value={formData.sem}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        Batch:
+        <input
+          type="text"
+          name="batch"
+          value={formData.batch}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        Type:
+        <input
+          type="text"
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <button
+        type="submit"
+        style={{ padding: '10px 20px', backgroundColor: '#2577cd', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', marginTop: '20px' }}
+      >
+        Submit
+      </button>
+    </form>
     </div>
   );
 };

@@ -20,9 +20,9 @@ const AdminAllotment = () => {
         console.error('Error fetching user data:', error);
       }
     };
-
     fetchData();
   },[]);
+  
   const handleAccept = async (sid,cid,sem,batch) => {
     const accept = await axios.put(`http://localhost:8091/allotmentaccept/${sid}/${cid}/${sem}/${batch}`);
     if(accept.data==="OK")
@@ -41,10 +41,14 @@ const AdminAllotment = () => {
   return (
     <div>
         <AdminNavbar/>
-        <button onClick={handleRegister}>add allotment</button>
+      <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+      <div>
+        <h1>Allotments List</h1>
+        <button onClick={handleRegister} style={{background:'transparent',marginBottom:'20px'}}>add allotment</button>
         <div>
-      <h1>Allotments List</h1>
-      <table border="1" width="100%">
+        <table border="1" width="100%">
         <thead>
           <tr>
             <th>SID</th>
@@ -73,6 +77,9 @@ const AdminAllotment = () => {
           ))}
         </tbody>
       </table>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
 

@@ -42,7 +42,7 @@ const RegistrationForm = () => {
 
   return (
     <div  className='container '>
-      <h2 className='register'><center>REGISTERATION FORM</center></h2>
+    <h2 className='register'><center>REGISTERATION FORM</center></h2>
       <form onSubmit={handleSubmit} className='register-form-group'>
         <div className='input'>
           <center>

@@ -1,6 +1,7 @@
 import {React,useState,useEffect} from 'react'
 import axios from 'axios';
 import TeacherNavbar from './TeacherNavbar'
+import './Teacher.css'
 
 export default function  TeacherTimeTable(){
    // const [TeacherTT, setTeacherTT] = useState([]);
@@ -49,10 +50,12 @@ export default function  TeacherTimeTable(){
   return (
     <div>
         <TeacherNavbar/>    
-        <div className="container mt-5">
-      <h1 className="text-center">{TTData.tid}</h1>
-      <div className="table-responsive">
-        <table className="table table-bordered">
+        <div className='container-2'>
+      <div className='watermark'></div>
+      <div className='text-content'>
+      <div>
+      <h1>Teacher data display </h1>
+      <table border="1" >
           <thead>
             <tr>
               <th>Days/Periods</th>
@@ -114,6 +117,7 @@ export default function  TeacherTimeTable(){
           </tbody>
         </table>
       </div>
+    </div>
     </div>
     </div>
   )

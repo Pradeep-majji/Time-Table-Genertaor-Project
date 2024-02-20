@@ -1,10 +1,16 @@
 import React from 'react'
 import AdminNavbar from './AdminNavbar';
+import './Admin.css'
 const AdminHome = () => {
   return (
     <div>
         <AdminNavbar/>
-        <h1>admin dashboard is loading... </h1>
+      <div className='container-3'>
+      <div className='watermark-3'></div>
+      <div className='text-content'>
+        Admin Home
+      </div>
+      </div>
     </div>
   )
 }

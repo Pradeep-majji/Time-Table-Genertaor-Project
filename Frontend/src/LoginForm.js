@@ -62,7 +62,7 @@ const LoginForm = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover/>
-    <h1 className='hello'><center>LOGIN FORM</center></h1>
+    <h1><center>LOGIN FORM</center></h1>
     <Form  className='login-form'>
       <Form.Group controlId="formEmail" className='form-group'>
         <Form.Label className='form-label'>EMAIL</Form.Label>
