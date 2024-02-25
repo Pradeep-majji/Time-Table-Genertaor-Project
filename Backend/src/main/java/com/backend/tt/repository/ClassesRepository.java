@@ -1,4 +1,4 @@
-package com.backend.tt.repository;
+package com.demo.timetable.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.backend.tt.entity.ClassesEntity;
+import com.demo.timetable.entity.ClassesEntity;
 
 public interface ClassesRepository extends JpaRepository<ClassesEntity,String>{
 
@@ -20,4 +20,8 @@ public interface ClassesRepository extends JpaRepository<ClassesEntity,String>{
 	@Modifying
 	@Query(value="update classes u set u.alloted='1',u.csem=?2,u.ctype=?3,u.cbatch=?4 where u.cid=?1",nativeQuery=true)
 	  public int classesUpdate(String cid,String csem,String ctype,String cbatch);
+
+	@Modifying
+	@Query(value="update classes u set u.wphw=?2 where u.cid=?1",nativeQuery=true)
+	  public int classesUpdateLoad(String cid,int load);
 }

@@ -1,4 +1,4 @@
-package com.backend.tt.service;
+package com.demo.timetable.service;
 
 import java.util.List;
 
@@ -7,21 +7,38 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 //import com.backend.tt.entity.ClassesEntity;
-import com.backend.tt.entity.TeacherEntity;
-import com.backend.tt.repository.TeacherRepository;
+import com.demo.timetable.entity.TeacherEntity;
+import com.demo.timetable.entity.TeacherTTEntity;
+import com.demo.timetable.repository.TeacherRepository;
+import com.demo.timetable.repository.TeacherTTRepository;
 
 
 @Service
 public class TeacherService {
 
-	@Autowired
-	TeacherRepository TeacherRepository;
+	@Autowired TeacherRepository TeacherRepository;
+	@Autowired TeacherTTRepository TeacherTTRepository;
+
 	
 	@Transactional
 	public boolean insertUser(TeacherEntity ur)
 	{
 		return TeacherRepository.save(ur)!=null;
 	}
+	
+	@Transactional
+	public boolean insertUserAdmin(TeacherEntity ur)
+	{	String tid=ur.getTid();
+		String tname=ur.getTname();
+		String temail=ur.getTemail();
+		String tpassword=ur.getTpassword();
+		String tdesignation=ur.getTdesignation();
+		String tspecialisation=ur.getTspecialisation();
+		long count=TeacherRepository.count();
+		TeacherRepository.saveAdmin(tid,tname,temail,tpassword,tdesignation,tspecialisation);
+		return count<TeacherRepository.count();
+	}
+	
 	@Transactional(readOnly=true)
 	public boolean loginAuthenticate(String email,String password) {
 		int count=TeacherRepository.loginAuthenticate(email,password);
@@ -45,10 +62,19 @@ public class TeacherService {
 	@Transactional
 	public boolean teacherAccept(String email) {
 		int count=TeacherRepository.teacherAccept(email);
-		return count>0;
+		TeacherTTEntity ur=new TeacherTTEntity(email);
+		if(TeacherTTRepository.save(ur)!=null)
+		    return count>0;
+		else return false;
 	}
 	@Transactional(readOnly=true)
 	public TeacherEntity getId(String email) {
 		return TeacherRepository.getId(email);	
+	}
+	@Transactional
+	public boolean modifyLoad(String tid,int load)
+	{
+		int count=TeacherRepository.teacherUpdateLoad(tid,load);
+		return count>0;
 	}
 }

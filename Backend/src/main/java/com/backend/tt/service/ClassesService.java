@@ -1,4 +1,4 @@
-package com.backend.tt.service;
+package com.demo.timetable.service;
 
 import java.util.List;
 
@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.backend.tt.entity.ClassesEntity;
-import com.backend.tt.repository.ClassesRepository;
+import com.demo.timetable.entity.ClassesEntity;
+import com.demo.timetable.entity.ClassroomTTEntity;
+import com.demo.timetable.repository.ClassesRepository;
+import com.demo.timetable.repository.ClassroomTTRepository;
 
 @Service
 public class ClassesService {
 	
 
-	@Autowired
-	ClassesRepository ClassesRepository;
+	@Autowired ClassesRepository ClassesRepository;
+	@Autowired ClassroomTTRepository ClassroomTTRepository;
 	
 	@Transactional(readOnly=true)
 	public List<ClassesEntity> getAllotedClasses(){
@@ -27,12 +29,23 @@ public class ClassesService {
 	@Transactional
 	public boolean insertUser(ClassesEntity ur)
 	{
-		return ClassesRepository.save(ur)!=null;
+		if( ClassesRepository.save(ur)!= null) {
+			ClassroomTTEntity t=new ClassroomTTEntity(ur.getCid());
+			if (ClassroomTTRepository.save(t)!=null) return true;
+			else return false;
+		}
+		else return false;
 	}
 	@Transactional
 	public boolean modifyUser(String cid,String csem,String ctype,String cbatch)
 	{
 		int count=ClassesRepository.classesUpdate(cid,csem,ctype,cbatch);
+		return count>0;
+	}
+	@Transactional
+	public boolean modifyLoad(String cid,int load)
+	{
+		int count=ClassesRepository.classesUpdateLoad(cid,load);
 		return count>0;
 	}
 	@Transactional(readOnly=true)

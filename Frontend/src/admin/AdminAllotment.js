@@ -70,8 +70,8 @@ const AdminAllotment = () => {
               <td>{allotment.id.batch}</td>
               <td>{allotment.type}</td>
               <td>
-                <button onClick={() => handleAccept(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)}>Accept</button>
-                <button onClick={() => handleDelete(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)}>Delete</button>
+                <button onClick={() => handleAccept(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)} className='btn btn-primary'>Accept</button>
+                <button onClick={() => handleDelete(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)} className='btn btn-danger'>Delete</button>
               </td>
             </tr>
           ))}

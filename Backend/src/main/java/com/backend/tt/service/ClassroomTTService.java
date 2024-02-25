@@ -1,12 +1,12 @@
-package com.backend.tt.service;
+package com.demo.timetable.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.backend.tt.entity.ClassroomTTEntity;
-import com.backend.tt.repository.ClassroomTTRepository;
+import com.demo.timetable.entity.ClassroomTTEntity;
+import com.demo.timetable.repository.ClassroomTTRepository;
 
 
 @Service

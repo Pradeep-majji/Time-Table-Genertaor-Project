@@ -66,7 +66,7 @@ const AllotmentForm = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <h1>Allotment Form</h1>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
       <label style={{ marginBottom: '10px' }}>

@@ -1,28 +1,36 @@
-package com.backend.tt.service;
-
-import java.util.List;
+package com.demo.timetable.service;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.backend.tt.entity.SubjectEntity;
-//import com.backend.tt.entity.TeacherEntity;
-import com.backend.tt.repository.SubjectRepository;
+import com.demo.timetable.entity.ClassroomTTEntity;
+import com.demo.timetable.repository.ClassroomTTRepository;
+
+
 @Service
-public class SubjectService {
+public class ClassroomTTService {
 
 	@Autowired
-	SubjectRepository SubjectRepository;
+	ClassroomTTRepository ClassroomTTRepository;
 	
 	@Transactional(readOnly=true)
-	public List<SubjectEntity> getSubjects() {
-		return SubjectRepository.findAll();	
+	public ClassroomTTEntity getOneUser(String cid) {
+		Optional<ClassroomTTEntity> u=ClassroomTTRepository.findById(cid);
+		if(u.isPresent())
+			return u.get();
+		return null;
 	}
 	@Transactional
-	public boolean insertUser(SubjectEntity ur)
+	public boolean insertUser(ClassroomTTEntity ur)
 	{
-		return SubjectRepository.save(ur) != null ;
+		return ClassroomTTRepository.save(ur)!=null;
+	}
+	@Transactional
+	public boolean modifyUser(ClassroomTTEntity ur)
+	{
+		return ClassroomTTRepository.save(ur)!=null;
 	}
 	
 }

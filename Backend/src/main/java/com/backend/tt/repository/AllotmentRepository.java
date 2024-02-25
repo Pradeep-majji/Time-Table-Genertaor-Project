@@ -1,4 +1,4 @@
-package com.backend.tt.repository;
+package com.demo.timetable.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.backend.tt.entity.AllotmentEntity;
+import com.demo.timetable.entity.AllotmentEntity;
 
 public interface AllotmentRepository extends JpaRepository<AllotmentEntity,AllotmentEntity.AllotmentId>{
 

@@ -34,7 +34,8 @@ const ClassroomUpdateForm = () =>
       };
 
   return (
-    <div><div>
+    <div className='container'>
+    <div>
     <h2>Update Classroom</h2>
     <form onSubmit={handleFormSubmit}>
       <label>

@@ -1,4 +1,4 @@
-package com.backend.tt.entity;
+package com.demo.timetable.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -57,7 +57,7 @@ const AdminAddClassrooms = () => {
               <td>{classroom.cbatch}</td>
               <td>{classroom.csem}</td>
               <td>
-                <button onClick={() => handleUpdate(classroom.cid)}>UPDATE</button>
+                <button onClick={() => handleUpdate(classroom.cid)} className='btn btn-primary'>UPDATE</button>
               </td>
             </tr>
           ))}

@@ -9,6 +9,10 @@ class LoginService
     {
         return axios.post('http://localhost:8091/addteacher', formData)
     }
+    static addTeacherAdmin(formData)
+    {
+        return axios.post('http://localhost:8091/addteacheradmin', formData)
+    }
     static verifyAdmin(uname,password)
     {  
         return axios.get(`http://localhost:8091/verifyadmin/${uname}/${password}`);

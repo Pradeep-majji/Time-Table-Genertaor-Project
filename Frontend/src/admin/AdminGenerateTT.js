@@ -37,12 +37,14 @@ const  AdminGenerateTT = () => {
 
     const handleReset = async  () => {
         try {
-          
+                const res= await axios.get('http://localhost:8091/admin')
+                console.log(res.data)
+                if(res.data==="OK")
+                {
                 //-----------------resetting--------------------
                 let classroomlist = await axios.get('http://localhost:8091/classrooms');
                 let teacherallotedlist=await axios.get('http://localhost:8091/teacherv');
                 if(classroomlist.data==="OK" && teacherallotedlist.data==="OK"){
-
                     //for every classroom which is in database
                     setClassroomList(classroomList.data)
                      classroomList.forEach(async (classroom) => {
@@ -51,12 +53,10 @@ const  AdminGenerateTT = () => {
                           ...CTTData,
                           cid:classroom.cid,
                                 });
-                        await axios.post(`http://localhost:8091/addclassroomtt`,CTTData)}
-                        catch(error){
-                          console.log(error)
-                      }
+                        await axios.post(`http://localhost:8091/addclassroomtt`,CTTData)
+                        }
+                        catch(error) { console.log(error) }
                       });
-
                       //for every teacher who are verified in database by the admin
                       setTeacherAllotedList(teacherAllotedList.data)
                       teacherAllotedList.forEach(async (teacher) => {
@@ -70,14 +70,17 @@ const  AdminGenerateTT = () => {
                             catch(error){
                               console.log(error)
                             }
-                      });
+                      });   }
+                  await axios.put('http://localhost:8091/adminreset');
+                  alert('Timetable resetted successfully!');
 
-        }
-        alert('Timetable resetted successfully!');
-        } catch (error) {
-          //console.error('Error generating timetable:', error);
-          alert('Error resetting timetable. Please try again.');
-        }
+                  }
+                  else{
+                    alert('already resetted')
+                  }
+             }
+     catch (error) {
+        alert('Error resetting timetable. Please try again.'); }
         navigate('/admingeneratett')
     };
   return (

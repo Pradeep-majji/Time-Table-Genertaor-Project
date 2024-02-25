@@ -1,4 +1,4 @@
-package com.backend.tt.controller;
+package com.demo.timetable.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.backend.tt.entity.ClassesEntity;
-import com.backend.tt.entity.TeacherEntity;
-import com.backend.tt.service.TeacherService;
+import com.demo.timetable.entity.TeacherEntity;
+import com.demo.timetable.service.TeacherService;
 
 
 
@@ -28,6 +28,14 @@ public class TeacherController {
 	
 	@PostMapping(value="/addteacher",consumes="application/json")
 	public HttpStatus addUser(@RequestBody TeacherEntity ur)
+	{
+		if(TeacherService.insertUser(ur))
+			return HttpStatus.OK;
+		return HttpStatus.NOT_FOUND;
+	}
+	
+	@PostMapping(value="/addteacheradmin",consumes="application/json")
+	public HttpStatus addUserAdmin(@RequestBody TeacherEntity ur)
 	{
 		if(TeacherService.insertUser(ur))
 			return HttpStatus.OK;

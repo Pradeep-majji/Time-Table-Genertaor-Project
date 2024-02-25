@@ -25,18 +25,30 @@ const RegistrationForm = () => {
   let navigate=useNavigate()
   const handleSubmit = async  (e) => {
     e.preventDefault();
+    const Email = localStorage.getItem('email');
+    console.log(Email)
+    if(Email){
+    let result=await LoginService.addTeacherAdmin(formData)
+    console.log(result)
+    if(result.data==="OK") navigate('/adminaddteacher');
+      else{
+        alert('unable to add teacher')
+        navigate('/adminaddteacher');
+      }
+    }
+    else
+    {
     let result=await LoginService.addTeacher(formData)
     console.log(result)
     if(result.data==="OK"){
         alert('we sent request to admin for your conformation')
-        if(localStorage.getItem('email'))  navigate('/adminaddteacher');
-        else navigate('/');
+        navigate('/');
       }
       else{
         alert('unable to register')
-        if(localStorage.getItem('email'))  navigate('/adminaddteacher');
-        else navigate('/');
-      }   
+        navigate('/');
+      } 
+    }  
   };
   
 
@@ -98,11 +110,11 @@ const RegistrationForm = () => {
         </div>
         <div>
           <center >
-          <label htmlFor="tDesignation" className='label'>Designation</label>
+          <label htmlFor="tdesignation" className='label'>Designation</label>
           <input className='input'
             type="text"
-            id="tDesignation"
-            name="tDesignation"
+            id="tdesignation"
+            name="tdesignation"
             value ={formData.tDesignation}
             onChange={handleChange}
             placeholder='Enter your Designation'

@@ -9,6 +9,7 @@ const HomePage = () => {
   const [userData, setUserData] = useState([]);
   const navigate=useNavigate();
   const handleGenerateTT=(cid)=>{
+    
     navigate('/classtimetable',{ state: { cid } })
   }
   useEffect(() => {
@@ -49,7 +50,7 @@ const HomePage = () => {
               <td>{teacher.cbatch}</td>
               <td>{teacher.csem}</td>
               <td>
-                <button onClick={() => handleGenerateTT(teacher.cid)}>TIME TABLE</button>
+                <button onClick={() => handleGenerateTT(teacher.cid)} className='btn btn-primary'>TIME TABLE</button>
               </td>
             </tr>
           ))}

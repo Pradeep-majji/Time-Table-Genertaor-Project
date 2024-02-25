@@ -1,4 +1,4 @@
-package com.backend.tt.controller;
+package com.demo.timetable.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.tt.entity.ClassroomTTEntity;
-import com.backend.tt.service.ClassroomTTService;
+import com.demo.timetable.entity.ClassroomTTEntity;
+import com.demo.timetable.service.ClassroomTTService;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class ClassroomTTController{

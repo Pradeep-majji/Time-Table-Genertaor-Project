@@ -1,4 +1,4 @@
-package com.backend.tt.controller;
+package com.demo.timetable.controller;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.tt.entity.SubjectEntity;
+import com.demo.timetable.entity.SubjectEntity;
 //import com.backend.tt.entity.TeacherEntity;
-import com.backend.tt.service.SubjectService;
+import com.demo.timetable.service.SubjectService;
 //import com.backend.tt.service.TeacherService;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController

@@ -101,8 +101,8 @@ const AdminAddTeachers = () => {
               <td>{teacher.tdesignation}</td>
               <td>{teacher.tspecialisation}</td>
               <td>
-                <button onClick={() => handleAccept(teacher.tid)}>Accept</button>
-                <button onClick={() => handleDelete(teacher.tid)}>Delete</button>
+                <button onClick={() => handleAccept(teacher.tid)} className='btn btn-primary'>Accept</button>
+                <button onClick={() => handleDelete(teacher.tid)} className='btn btn-danger'>Delete</button>
               </td>
             </tr>
           ))}

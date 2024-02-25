@@ -36,9 +36,9 @@ export default function  TeacherTimeTable(){
       try {
         const email=localStorage.getItem('email')
         const rtid= await axios.get(`http://localhost:8091/teacherid/${email}`);
-        console.log(rtid.data)
+        //console.log(rtid.data)
         const result = await axios.get(`http://localhost:8091/teachertt/${rtid.data.tid}`);
-        console.log(result.data)
+        //console.log(result.data)
         setTTData(result.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -54,7 +54,7 @@ export default function  TeacherTimeTable(){
       <div className='watermark'></div>
       <div className='text-content'>
       <div>
-      <h1>Teacher data display </h1>
+      <h1>{TTData.tid} teacher details</h1>
       <table border="1" >
           <thead>
             <tr>

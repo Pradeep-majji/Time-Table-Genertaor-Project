@@ -1,4 +1,4 @@
-package com.backend.tt.entity;
+package com.demo.timetable.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -88,6 +88,10 @@ public class TeacherTTEntity {
 		this.p21 = p21;
 		this.p22 = p22;
 		this.filled=filled;
+	}
+	public TeacherTTEntity(String email) {
+		super();
+		this.tid = email;
 	}
 	public String getTid() {
 		return tid;

@@ -1,4 +1,4 @@
-package com.backend.tt.controller;
+package com.demo.timetable.controller;
 
 import java.util.List;
 
@@ -14,21 +14,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.tt.entity.AllotmentEntity;
-import com.backend.tt.service.AllotmentService;
+import com.demo.timetable.entity.AllotmentEntity;
+import com.demo.timetable.entity.AllotmentEntity.AllotmentId;
+import com.demo.timetable.service.AllotmentService;
+import com.demo.timetable.service.ClassesService;
+import com.demo.timetable.service.TeacherService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class AllotmentController {
 
 	@Autowired AllotmentService AllotmentService;
+	@Autowired TeacherService TeacherService;
+	@Autowired ClassesService ClassesService;
 	
 	@PostMapping(value="/addallotment",consumes="application/json")
 	public ResponseEntity<String> addUser(@RequestBody AllotmentEntity ur)
 	{
 		if (AllotmentService.insertUser(ur)) {
-	        return new ResponseEntity<>("Allotment added successfully", HttpStatus.OK);
-	    } else {
+			String type=ur.getType();
+			AllotmentId id=ur.getId();
+			String cid=id.getCid();
+			String tid=ur.getTid();
+			int load=2;
+			if("lab".equals(type)) load=4;
+			//increase load for teacher and class..
+			if(ClassesService.modifyLoad(cid,load) && TeacherService.modifyLoad(tid, load))
+			return new ResponseEntity<>("Allotment added successfully", HttpStatus.OK);
+			else {
+			boolean bool=AllotmentService.deleteUser(id.getSid(),id.getCid(),id.getSem(),id.getBatch());
+		    return new ResponseEntity<>("Failed to add allotment", HttpStatus.NOT_FOUND);
+			}
+	    }
+		else {
 	        return new ResponseEntity<>("Failed to add allotment", HttpStatus.NOT_FOUND);
 	    }
 	}
