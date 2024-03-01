@@ -23,8 +23,8 @@ const AdminAllotment = () => {
     fetchData();
   },[]);
   
-  const handleAccept = async (sid,cid,sem,batch) => {
-    const accept = await axios.put(`http://localhost:8091/allotmentaccept/${sid}/${cid}/${sem}/${batch}`);
+  const handleAccept = async (sid,cid,sem,batch,type,tid) => {
+    const accept = await axios.put(`http://localhost:8091/allotmentaccept/${sid}/${cid}/${sem}/${batch}/${type}/${tid}`);
     if(accept.data==="OK")
     {const result = await axios.get('http://localhost:8091/allotmentuv');
     setAllotments(result.data);}
@@ -70,7 +70,7 @@ const AdminAllotment = () => {
               <td>{allotment.id.batch}</td>
               <td>{allotment.type}</td>
               <td>
-                <button onClick={() => handleAccept(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)} className='btn btn-primary'>Accept</button>
+                <button onClick={() => handleAccept(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch,allotment.type,allotment.tid)} className='btn btn-primary'>Accept</button>
                 <button onClick={() => handleDelete(allotment.id.sid,allotment.id.cid,allotment.id.sem,allotment.id.batch)} className='btn btn-danger'>Delete</button>
               </td>
             </tr>

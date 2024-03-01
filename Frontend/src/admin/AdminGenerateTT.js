@@ -1,38 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
 import AdminService from './AdminService';
 import { useNavigate} from "react-router-dom";
 import axios from 'axios';
+import LoginService from '../LoginService';
 
 const  AdminGenerateTT = () => {
+  
+  const [TTData, setTTData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("inside in fetching data");
+        const result = await LoginService.getClassroomsTT();
+        setTTData(result.data);
+        console.log(TTData)
+        //console.log(result.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    fetchData();
+  } , []);
+
+  useEffect(() => {
+    console.log("TTData: dis[playing", TTData[1]);
+  }, [TTData]);
+
+
     const navigate=useNavigate();
-    const [classroomList,setClassroomList]=useState([])
-    const [teacherAllotedList,setTeacherAllotedList]=useState([])
-    //for teacherlist storing data
-    const [TTTData, setTTTData] = useState({
-      tid: '',
-      p1: '-',p2: '-',p3: '-',p4: '-', p5: '-',p6: '-',p7: '-',p8: '-',p9: '-',p10: '-',p11: '-',p12: '-',p13: '-',
-      p14: '-',p15: '-',p16: '-',p17: '-',p18: '-',p19: '-',p20: '-',p21: '-',p22: '-'
-    });
-    //for student list storing data
-    const [CTTData, setCTTData] = useState({
-      cid: '',
-      p1: '-',p2: '-',p3: '-',p4: '-', p5: '-',p6: '-',p7: '-',p8: '-',p9: '-',p10: '-',p11: '-',p12: '-',p13: '-',
-      p14: '-',p15: '-',p16: '-',p17: '-',p18: '-',p19: '-',p20: '-',p21: '-',p22: '-'
-    });
 
     //time table generator  
     const handleGenerate = async () => {
-        try {
-           await AdminService.generatett()
-          //console.log('Timetable generated successfully:', response.data);
-          alert('Timetable generated successfully!');
-        } catch (error) {
-          //console.error('Error generating timetable:', error);
-          alert('Error generating timetable. Please try again.');
-        }
-        navigate('/admingeneratett')
-      };
+      const res= await axios.get('http://localhost:8091/admin')
+                console.log(res.data)
+                if(res.data!=="OK")
+                { 
+                    try {
+                        await AdminService.generatett()
+                        //console.log('Timetable generated successfully:', response.data);
+                        await axios.put('http://localhost:8091/admingenerate');
+                        alert('Timetable generated successfully!');
+                      } catch (error) {
+                        //console.error('Error generating timetable:', error);
+                        alert('Error generating timetable. Please try again.');
+                      }
+                      navigate('/admingeneratett')
+                }
+                else{
+                  alert('time table already generated')
+                }
+            };
 
 
     const handleReset = async  () => {
@@ -41,36 +60,7 @@ const  AdminGenerateTT = () => {
                 console.log(res.data)
                 if(res.data==="OK")
                 {
-                //-----------------resetting--------------------
-                let classroomlist = await axios.get('http://localhost:8091/classrooms');
-                let teacherallotedlist=await axios.get('http://localhost:8091/teacherv');
-                if(classroomlist.data==="OK" && teacherallotedlist.data==="OK"){
-                    //for every classroom which is in database
-                    setClassroomList(classroomList.data)
-                     classroomList.forEach(async (classroom) => {
-                      try{
-                          setCTTData({
-                          ...CTTData,
-                          cid:classroom.cid,
-                                });
-                        await axios.post(`http://localhost:8091/addclassroomtt`,CTTData)
-                        }
-                        catch(error) { console.log(error) }
-                      });
-                      //for every teacher who are verified in database by the admin
-                      setTeacherAllotedList(teacherAllotedList.data)
-                      teacherAllotedList.forEach(async (teacher) => {
-                      try{
-                            setTTTData({
-                                ...TTTData,
-                                tid:teacher.tid,
-                              });
-                              await axios.post(`http://localhost:8091/addteachertt`,TTTData) 
-                            }
-                            catch(error){
-                              console.log(error)
-                            }
-                      });   }
+                  await AdminService.resettt();
                   await axios.put('http://localhost:8091/adminreset');
                   alert('Timetable resetted successfully!');
 
@@ -98,69 +88,102 @@ const  AdminGenerateTT = () => {
       </button>
     </div>
     <br/>
-    <h1>Time Table Preview </h1>
-    <table border="1" >
+    {TTData.map((weekData, index) => (
+          <div key={index}>
+            
+            <h2>{weekData.cid}</h2>
+            <table border='1'>
           <thead>
             <tr>
               <th>Days/Periods</th>
               <th>PERIOD-1</th>
               <th>PERIOD-2</th>
-              <th>Break</th>
               <th>PERIOD-3</th>
               <th>PERIOD-4</th>
+              <th>Break</th>
+              <th>PERIOD-5</th>
+              <th>PERIOD-6</th>
+              <th>PERIOD-7</th>
+              <th>PERIOD-8</th>
             </tr>
           </thead>
           <tbody><tr>
             <th>Monday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p1}</td>
+            <td>{weekData.p1}</td>
+            <td>{weekData.p2}</td>
+            <td>{weekData.p2}</td>
             <td>Break</td>
-            <td>Period-3</td>
-            <td>Period-4</td>
+            <td>{weekData.p3}</td>
+            <td>{weekData.p3}</td>
+            <td>{weekData.p4}</td>
+            <td>{weekData.p4}</td>
           </tr>
           <tr>
             <th>Tuesday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p5}</td>
+            <td>{weekData.p5}</td>
+            <td>{weekData.p6}</td>
+            <td>{weekData.p6}</td>
             <td>Break</td>
-            <td>Period-3</td>
-            <td>Period-4</td>
+            <td>{weekData.p7}</td>
+            <td>{weekData.p7}</td>
+            <td>{weekData.p8}</td>
+            <td>{weekData.p8}</td>
           </tr>
           <tr>
             <th>Wednesday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p9}</td>
+            <td>{weekData.p9}</td>
+            <td>{weekData.p10}</td>
+            <td>{weekData.p10}</td>
             <td>Break</td>
-            <td>Period-3</td>
-            <td>Period-4</td>
+            <td>{weekData.p11}</td>
+            <td>{weekData.p11}</td>
+            <td>{weekData.p12}</td>
+            <td>{weekData.p12}</td>
           </tr>
           <tr>
             <th>Thursday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p13}</td>
+            <td>{weekData.p13}</td>
+            <td>{weekData.p14}</td>
+            <td>{weekData.p14}</td>
             <td>Break</td>
-            <td>Period-3</td>
-            <td>Period-4</td>
+            <td>{weekData.p15}</td>
+            <td>{weekData.p15}</td>
+            <td>{weekData.p16}</td>
+            <td>{weekData.p16}</td>
           </tr>
           <tr>
             <th>Friday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p17}</td>
+            <td>{weekData.p17}</td>
+            <td>{weekData.p18}</td>
+            <td>{weekData.p18}</td>
             <td>Break</td>
-            <td>Period-3</td>
-            <td>Period-4</td>
+            <td>{weekData.p19}</td>
+            <td>{weekData.p19}</td>
+            <td>{weekData.p20}</td>
+            <td>{weekData.p20}</td>
           </tr>
           <tr>
             <th>Saturday</th>
-            <td>Period-1</td>
-            <td>Period-2</td>
+            <td>{weekData.p21}</td>
+            <td>{weekData.p21}</td>
+            <td>{weekData.p22}</td>
+            <td>{weekData.p22}</td>
             <td>Break</td>
-            <td>Break</td>
-            <td>Break</td>
+            <td>Free</td>
+            <td>Free</td>
+            <td>Free</td>
+            <td>Free</td>
           </tr>
           </tbody>
         </table>
-    </div>
+        <br/>
+          </div>
+        ))}</div>
     </div>
     </div>
   )

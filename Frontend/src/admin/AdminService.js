@@ -21,6 +21,10 @@ class AdminService
     {
         return axios.get('http://localhost:8091/generatett')
     }
+    static resettt()
+    {
+        return axios.get('http://localhost:8091/resettt')
+    }
     /*static resettt()
     {   
         let classroomlist = await axios.get('http://localhost:8091/classrooms');

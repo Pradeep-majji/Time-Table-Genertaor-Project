@@ -10,6 +10,7 @@ const AllotmentForm = () => {
     sem: '',
     batch: '',
     type: '',
+    tdesignation:'',
     placed:0,
     verified:0
 
@@ -39,6 +40,7 @@ const AllotmentForm = () => {
       tid: formData.tid,
       placed: formData.placed,
       verified: formData.verified,
+      tdesignation:formData.tdesignation,
     };
 
 
@@ -125,6 +127,16 @@ const AllotmentForm = () => {
           type="text"
           name="type"
           value={formData.type}
+          onChange={handleChange}
+          style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
+        />
+      </label>
+      <label style={{ marginBottom: '10px' }}>
+        Designation
+        <input
+          type="text"
+          name="tdesignation"
+          value={formData.tdesignation}
           onChange={handleChange}
           style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '5px', marginLeft: '10px', width: 'calc(100% - 20px)' }}
         />

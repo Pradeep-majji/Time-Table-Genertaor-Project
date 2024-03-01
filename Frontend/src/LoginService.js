@@ -21,6 +21,10 @@ class LoginService
     {  
         return axios.get(`http://localhost:8091/classroomtt/${cid}`);
     }
+    static getClassroomsTT()
+    {  
+        return axios.get(`http://localhost:8091/classroomttslist`);
+    }
     static getallotedclasses()
     {  
         return axios.get(`http://localhost:8091/classroomslist`);

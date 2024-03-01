@@ -8,6 +8,7 @@ const SubjectsForm = () => {
     sname: '',
     sid:'',
     stype:'',
+    sclass:'',
   });
   
   const handleChange = (e) => {
@@ -74,6 +75,19 @@ const SubjectsForm = () => {
             value ={formData.stype}
             onChange={handleChange}
             placeholder='Enter subject type that is lab or theory'
+          />
+          </center>
+        </div>
+        <div>
+          <center >
+          <label htmlFor="sclass" className='label'>Lab Number:</label>
+          <input className='input'
+            type="text"
+            id="sclass"
+            name="sclass"
+            value ={formData.sclass}
+            onChange={handleChange}
+            placeholder='enter lab number for the subject if it is lab'
           />
           </center>
         </div>

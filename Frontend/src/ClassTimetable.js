@@ -65,56 +65,84 @@ export default function  ClassTimetable(){
               <th>Days/Periods</th>
               <th>PERIOD-1</th>
               <th>PERIOD-2</th>
-              <th>Break</th>
               <th>PERIOD-3</th>
               <th>PERIOD-4</th>
+              <th>Break</th>
+              <th>PERIOD-5</th>
+              <th>PERIOD-6</th>
+              <th>PERIOD-7</th>
+              <th>PERIOD-8</th>
             </tr>
           </thead>
           <tbody><tr>
             <th>Monday</th>
             <td>{TTData.p1}</td>
+            <td>{TTData.p1}</td>
+            <td>{TTData.p2}</td>
             <td>{TTData.p2}</td>
             <td>Break</td>
             <td>{TTData.p3}</td>
+            <td>{TTData.p3}</td>
+            <td>{TTData.p4}</td>
             <td>{TTData.p4}</td>
           </tr>
           <tr>
             <th>Tuesday</th>
             <td>{TTData.p5}</td>
+            <td>{TTData.p5}</td>
+            <td>{TTData.p6}</td>
             <td>{TTData.p6}</td>
             <td>Break</td>
             <td>{TTData.p7}</td>
+            <td>{TTData.p7}</td>
+            <td>{TTData.p8}</td>
             <td>{TTData.p8}</td>
           </tr>
           <tr>
             <th>Wednesday</th>
             <td>{TTData.p9}</td>
+            <td>{TTData.p9}</td>
+            <td>{TTData.p10}</td>
             <td>{TTData.p10}</td>
             <td>Break</td>
             <td>{TTData.p11}</td>
+            <td>{TTData.p11}</td>
+            <td>{TTData.p12}</td>
             <td>{TTData.p12}</td>
           </tr>
           <tr>
             <th>Thursday</th>
             <td>{TTData.p13}</td>
+            <td>{TTData.p13}</td>
+            <td>{TTData.p14}</td>
             <td>{TTData.p14}</td>
             <td>Break</td>
             <td>{TTData.p15}</td>
+            <td>{TTData.p15}</td>
+            <td>{TTData.p16}</td>
             <td>{TTData.p16}</td>
           </tr>
           <tr>
             <th>Friday</th>
             <td>{TTData.p17}</td>
+            <td>{TTData.p17}</td>
+            <td>{TTData.p18}</td>
             <td>{TTData.p18}</td>
             <td>Break</td>
             <td>{TTData.p19}</td>
+            <td>{TTData.p19}</td>
+            <td>{TTData.p20}</td>
             <td>{TTData.p20}</td>
           </tr>
           <tr>
             <th>Saturday</th>
             <td>{TTData.p21}</td>
+            <td>{TTData.p21}</td>
+            <td>{TTData.p22}</td>
             <td>{TTData.p22}</td>
             <td>Break</td>
+            <td>Free</td>
+            <td>Free</td>
             <td>Free</td>
             <td>Free</td>
           </tr>

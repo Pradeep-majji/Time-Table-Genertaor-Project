@@ -12,6 +12,7 @@ const TeacherAllotment = () => {
     sem: '',
     batch: '',
     type: '',
+    tdesignation:'',
     placed:0,
     verified:0
 
@@ -41,6 +42,7 @@ const TeacherAllotment = () => {
       tid: formData.tid,
       placed: formData.placed,
       verified: formData.verified,
+      tdesignation:formData.tdesignation,
     };
 
 
@@ -54,11 +56,13 @@ const TeacherAllotment = () => {
       console.log(formData)
       let result = await axios.post('http://localhost:8091/addallotment',allotmentData);
       //console.log('Allotment submitted successfully:', response.data);
+      //console.log(result.data)
       if(result.data==="OK"){
       alert('allotment is under review of admin...')
       navigate('/teacherallotment');
       }
       else{
+        alert('else in')
       alert('allotment not submitted')
       navigate('/teacherallotment');
       }
@@ -126,6 +130,15 @@ const TeacherAllotment = () => {
                 type="text"
                 name="type"
                 value={formData.type}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              <span>Designation</span>
+              <input
+                type="text"
+                name="tdesignation"
+                value={formData.tdesignation}
                 onChange={handleChange}
               />
             </label>
