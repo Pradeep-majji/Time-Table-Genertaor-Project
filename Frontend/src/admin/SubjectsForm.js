@@ -22,9 +22,9 @@ const SubjectsForm = () => {
     
     e.preventDefault();
    
-    let result=await AdminService.addSubject(formData)
+    let result=await AdminService.addSubject(formData);
     console.log(result)
-    if(result==="OK"){
+    if(result.data==="OK"){
     alert('subject added successfully')
     navigate('/adminaddsubject')
     }

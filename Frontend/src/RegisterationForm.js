@@ -12,6 +12,7 @@ const RegistrationForm = () => {
     tid:'',
     tdesignation:'',
     tspecialisation:'',
+    tsubjects:'',
     twpwh:0,
     verified:0
   });
@@ -131,6 +132,19 @@ const RegistrationForm = () => {
             value ={formData.tspecialisation}
             onChange={handleChange}
             placeholder='Enter your Specialisation'
+          />
+          </center>
+        </div>
+        <div>
+          <center >
+          <label htmlFor="tsubjects" className='label'>Subjects</label>
+          <input className='input'
+            type="input"
+            id="tsubjects"
+            name="tsubjects"
+            value ={formData.tsubjects}
+            onChange={handleChange}
+            placeholder='Enter your Subjects'
           />
           </center>
         </div>

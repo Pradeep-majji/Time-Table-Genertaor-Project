@@ -51,6 +51,17 @@ const TeacherAllotment = () => {
     if (isAllotted.data==="OK") {
       alert('Allotment already exists for this student and course combination.');
       navigate('/teacherallotment');
+      setFormData({
+        sid: '',
+        cid: '',
+        tid: '',
+        sem: '',
+        batch: '',
+        type: '',
+        tdesignation: '',
+        placed: 0,
+        verified: 0
+      });;
     }
     try {
       console.log(formData)
@@ -60,6 +71,17 @@ const TeacherAllotment = () => {
       if(result.data==="OK"){
       alert('allotment is under review of admin...')
       navigate('/teacherallotment');
+      setFormData({
+        sid: '',
+        cid: '',
+        tid: '',
+        sem: '',
+        batch: '',
+        type: '',
+        tdesignation: '',
+        placed: 0,
+        verified: 0
+      });
       }
       else{
         alert('else in')
