@@ -22,6 +22,8 @@ public class TeacherEntity {
 	private String tdesignation;
 	@Column(name="tspecialisation")
 	private String tspecialisation;
+	@Column(name="tsubjects")
+	private String tsubjects;
 	@Column(name="twhpw")
 	private int twhpw;
 	@Column(name="verified")
@@ -29,7 +31,7 @@ public class TeacherEntity {
 	
 	public TeacherEntity() {}
 	public TeacherEntity(String tid, String tname, String temail, String tpassword, String tdesignation,
-			String tspecialisation, int twhpw, int verified) {
+			String tspecialisation,String tsubjects, int twhpw, int verified) {
 		super();
 		this.tid = tid;
 		this.tname = tname;
@@ -37,6 +39,7 @@ public class TeacherEntity {
 		this.tpassword = tpassword;
 		this.tdesignation = tdesignation;
 		this.tspecialisation = tspecialisation;
+		this.tsubjects=tsubjects;
 		this.twhpw = twhpw;
 		this.verified = verified;
 	}
@@ -94,6 +97,11 @@ public class TeacherEntity {
 	public void setVerified(int verified) {
 		this.verified = verified;
 	}
-	
+	public String getTsubjects() {
+		return tsubjects;
+	}
+	public void setTsubjects(String tsubjects) {
+		this.tsubjects = tsubjects;
+	}
 	
 }
