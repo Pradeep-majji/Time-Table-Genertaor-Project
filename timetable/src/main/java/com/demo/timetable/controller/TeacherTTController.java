@@ -31,7 +31,7 @@ public class TeacherTTController {
     @PostMapping(value="/addteachertt",consumes="application/json")
 	public HttpStatus addUser(@RequestBody TeacherTTEntity ur)
 	{
-		if(TeacherTTService.insertUser(ur))
+		if(TeacherTTService.insertUser(ur))	
 			return HttpStatus.OK;
 		return HttpStatus.NOT_FOUND;
 	}

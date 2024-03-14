@@ -18,17 +18,20 @@ public class ClassesEntity {
 	private String cbatch;
 	@Column(name="csem")
 	private String csem;
+	@Column(name="cname")
+	private String cname;
 	@Column(name="alloted")
 	private int alloted;
 	@Column(name="cwhpw")
 	private int cwhpw;
 	public ClassesEntity() {}
 	
-	public ClassesEntity(String cid, String ctype, String cbatch, String csem, int alloted,int cwhpw) {
+	public ClassesEntity(String cid, String ctype, String cbatch,String cname, String csem, int alloted,int cwhpw) {
 		super();
 		this.cid = cid;
 		this.ctype = ctype;
 		this.cbatch = cbatch;
+		this.cname = cname;
 		this.csem = csem;
 		this.alloted = alloted;
 		this.cwhpw = cwhpw;
@@ -68,6 +71,12 @@ public class ClassesEntity {
 	}
 	public void setCwhpw(int cwhpw) {
 		this.cwhpw = cwhpw;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 	
 	

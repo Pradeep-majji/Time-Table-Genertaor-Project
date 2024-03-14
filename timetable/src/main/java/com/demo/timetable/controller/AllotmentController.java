@@ -22,7 +22,7 @@ import com.demo.timetable.service.TeacherService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-public class AllotmentController {
+public class AllotmentController{
 
 	@Autowired AllotmentService AllotmentService;
 	@Autowired TeacherService TeacherService;
@@ -66,14 +66,15 @@ public class AllotmentController {
 			return HttpStatus.OK;
 		return HttpStatus.NOT_FOUND;
 	}
-	@GetMapping(value="/generatett",produces="application/json")
+	@GetMapping(value="/generatett")
 	public HttpStatus generateTT() {
 		if(AllotmentService.generateTT())
 			return HttpStatus.OK;
 		return HttpStatus.NOT_FOUND; 
 	}
-	@GetMapping(value="/resettt",produces="application/json")
+	@GetMapping(value="/resettt")
 	public HttpStatus resetTT() {
+		//System.out.println("inside controller : "+cid);
 		if(AllotmentService.resetTT())
 			return HttpStatus.OK;
 		return HttpStatus.NOT_FOUND;

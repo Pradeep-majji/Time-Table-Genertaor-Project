@@ -19,11 +19,11 @@ class AdminService
     }
     static generatett()
     {
-        return axios.get('http://localhost:8091/generatett')
+        return axios.get(`http://localhost:8091/generatett`)
     }
     static resettt()
     {
-        return axios.get('http://localhost:8091/resettt')
+        return axios.get(`http://localhost:8091/resettt`)
     }
     /*static resettt()
     {   

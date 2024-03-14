@@ -8,6 +8,8 @@ import LoginService from '../LoginService';
 const  AdminGenerateTT = () => {
   
   const [TTData, setTTData] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [classrooms, setClassrooms] = useState([]); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +18,13 @@ const  AdminGenerateTT = () => {
         const result = await LoginService.getClassroomsTT();
         setTTData(result.data);
         console.log(TTData)
-        //console.log(result.data)
+        const result1 = await axios.get('http://localhost:8091/subjectlist');
+        const formattedSubjects = formatSubjects(result1.data);
+        setSubjects(formattedSubjects);
+        const result2 = await axios.get('http://localhost:8091/classrooms');
+        const formattedClassrooms = formatClassrooms(result2.data);
+        setClassrooms(formattedClassrooms);
+        console.log(classrooms);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -28,6 +36,32 @@ const  AdminGenerateTT = () => {
     console.log("TTData: dis[playing", TTData[1]);
   }, [TTData]);
 
+
+  const formatSubjects = (subjectsList) => {
+    const formattedDict = {};
+    subjectsList.forEach((subject) => {
+      formattedDict[subject.sid] = subject.sname;
+    });
+    return formattedDict;
+  };
+  const formatClassrooms = (classesList) => {
+    const formattedDict = {};
+    classesList.forEach((classes) => {
+      formattedDict[classes.cid] = classes.cname;
+    });
+    return formattedDict;
+  };
+
+  const getDisplayName = (period) => {
+    const id = period.split(':')[0];
+    if (id.startsWith('c')) {
+      // Display class name
+      return classrooms[id] || '';
+    } else {
+      // Display subject name
+      return subjects[id] || '';
+    }
+  };
 
     const navigate=useNavigate();
 
@@ -107,78 +141,79 @@ const  AdminGenerateTT = () => {
               <th>PERIOD-8</th>
             </tr>
           </thead>
-          <tbody><tr>
-            <th>Monday</th>
-            <td>{weekData.p1}</td>
-            <td>{weekData.p1}</td>
-            <td>{weekData.p2}</td>
-            <td>{weekData.p2}</td>
-            <td>Break</td>
-            <td>{weekData.p3}</td>
-            <td>{weekData.p3}</td>
-            <td>{weekData.p4}</td>
-            <td>{weekData.p4}</td>
-          </tr>
+          <tbody>
           <tr>
-            <th>Tuesday</th>
-            <td>{weekData.p5}</td>
-            <td>{weekData.p5}</td>
-            <td>{weekData.p6}</td>
-            <td>{weekData.p6}</td>
-            <td>Break</td>
-            <td>{weekData.p7}</td>
-            <td>{weekData.p7}</td>
-            <td>{weekData.p8}</td>
-            <td>{weekData.p8}</td>
-          </tr>
-          <tr>
-            <th>Wednesday</th>
-            <td>{weekData.p9}</td>
-            <td>{weekData.p9}</td>
-            <td>{weekData.p10}</td>
-            <td>{weekData.p10}</td>
-            <td>Break</td>
-            <td>{weekData.p11}</td>
-            <td>{weekData.p11}</td>
-            <td>{weekData.p12}</td>
-            <td>{weekData.p12}</td>
-          </tr>
-          <tr>
-            <th>Thursday</th>
-            <td>{weekData.p13}</td>
-            <td>{weekData.p13}</td>
-            <td>{weekData.p14}</td>
-            <td>{weekData.p14}</td>
-            <td>Break</td>
-            <td>{weekData.p15}</td>
-            <td>{weekData.p15}</td>
-            <td>{weekData.p16}</td>
-            <td>{weekData.p16}</td>
-          </tr>
-          <tr>
-            <th>Friday</th>
-            <td>{weekData.p17}</td>
-            <td>{weekData.p17}</td>
-            <td>{weekData.p18}</td>
-            <td>{weekData.p18}</td>
-            <td>Break</td>
-            <td>{weekData.p19}</td>
-            <td>{weekData.p19}</td>
-            <td>{weekData.p20}</td>
-            <td>{weekData.p20}</td>
-          </tr>
-          <tr>
-            <th>Saturday</th>
-            <td>{weekData.p21}</td>
-            <td>{weekData.p21}</td>
-            <td>{weekData.p22}</td>
-            <td>{weekData.p22}</td>
-            <td>Break</td>
-            <td>Free</td>
-            <td>Free</td>
-            <td>Free</td>
-            <td>Free</td>
-          </tr>
+              <th>Monday</th>
+              <td>{getDisplayName(weekData.p1)}</td>
+              <td>{getDisplayName(weekData.p1)}</td>
+              <td>{getDisplayName(weekData.p2)}</td>
+              <td>{getDisplayName(weekData.p2)}</td>
+              <td>Break</td>
+              <td>{getDisplayName(weekData.p3)}</td>
+              <td>{getDisplayName(weekData.p3)}</td>
+              <td>{getDisplayName(weekData.p4)}</td>
+              <td>{getDisplayName(weekData.p4)}</td>
+            </tr>
+            <tr>
+              <th>Tuesday</th>
+              <td>{getDisplayName(weekData.p5)}</td>
+              <td>{getDisplayName(weekData.p5)}</td>
+              <td>{getDisplayName(weekData.p6)}</td>
+              <td>{getDisplayName(weekData.p6)}</td>
+              <td>Break</td>
+              <td>{getDisplayName(weekData.p7)}</td>
+              <td>{getDisplayName(weekData.p7)}</td>
+              <td>{getDisplayName(weekData.p8)}</td>
+              <td>{getDisplayName(weekData.p8)}</td>
+            </tr>
+            <tr>
+              <th>Wednesday</th>
+              <td>{getDisplayName(weekData.p9)}</td>
+              <td>{getDisplayName(weekData.p9)}</td>
+              <td>{getDisplayName(weekData.p10)}</td>
+              <td>{getDisplayName(weekData.p10)}</td>
+              <td>Break</td>
+              <td>{getDisplayName(weekData.p11)}</td>
+              <td>{getDisplayName(weekData.p11)}</td>
+              <td>{getDisplayName(weekData.p12)}</td>
+              <td>{getDisplayName(weekData.p12)}</td>
+            </tr>
+            <tr>
+              <th>Thursday</th>
+              <td>{getDisplayName(weekData.p13)}</td>
+              <td>{getDisplayName(weekData.p13)}</td>
+              <td>{getDisplayName(weekData.p14)}</td>
+              <td>{getDisplayName(weekData.p14)}</td>
+              <td>Break</td>
+              <td>{getDisplayName(weekData.p15)}</td>
+              <td>{getDisplayName(weekData.p15)}</td>
+              <td>{getDisplayName(weekData.p16)}</td>
+              <td>{getDisplayName(weekData.p16)}</td>
+            </tr>
+            <tr>
+              <th>Friday</th>
+              <td>{getDisplayName(weekData.p17)}</td>
+              <td>{getDisplayName(weekData.p17)}</td>
+              <td>{getDisplayName(weekData.p18)}</td>
+              <td>{getDisplayName(weekData.p18)}</td>
+              <td>Break</td>
+              <td>{getDisplayName(weekData.p19)}</td>
+              <td>{getDisplayName(weekData.p19)}</td>
+              <td>{getDisplayName(weekData.p20)}</td>
+              <td>{getDisplayName(weekData.p20)}</td>
+            </tr>
+            <tr>
+              <th>Saturday</th>
+              <td>{getDisplayName(weekData.p21)}</td>
+              <td>{getDisplayName(weekData.p21)}</td>
+              <td>{getDisplayName(weekData.p22)}</td>
+              <td>{getDisplayName(weekData.p22)}</td>
+              <td>Break</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
           </tbody>
         </table>
         <br/>

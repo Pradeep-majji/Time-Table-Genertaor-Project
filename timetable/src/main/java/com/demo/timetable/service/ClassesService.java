@@ -39,9 +39,9 @@ public class ClassesService {
 		else return false;
 	}
 	@Transactional
-	public boolean modifyUser(String cid,String csem,String ctype,String cbatch)
+	public boolean modifyUser(String cid,String csem,String ctype,String cbatch,String cname)
 	{
-		int count=ClassesRepository.classesUpdate(cid,csem,ctype,cbatch);
+		int count=ClassesRepository.classesUpdate(cid,csem,ctype,cbatch,cname);
 		return count>0;
 	}
 	@Transactional

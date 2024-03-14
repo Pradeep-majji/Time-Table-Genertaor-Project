@@ -33,10 +33,10 @@ public class ClassesController {
 	public  ResponseEntity<List<ClassesEntity>> getClasses(){
 		return new ResponseEntity<List<ClassesEntity>>(ClassesService.getClasses(),HttpStatus.OK);
 	}
-	@PutMapping(value="/updateclassroom/{cid}/{csem}/{ctype}/{cbatch}")
-	public HttpStatus modifyUser(@PathVariable String cid,@PathVariable String csem,@PathVariable String ctype,@PathVariable String cbatch)
+	@PutMapping(value="/updateclassroom/{cid}/{csem}/{ctype}/{cbatch}/{cname}")
+	public HttpStatus modifyUser(@PathVariable String cid,@PathVariable String csem,@PathVariable String ctype,@PathVariable String cbatch,@PathVariable String cname)
 	{
-		if(ClassesService.modifyUser(cid,csem,ctype,cbatch))
+		if(ClassesService.modifyUser(cid,csem,ctype,cbatch,cname))
 			return HttpStatus.OK;
 		return HttpStatus.NOT_MODIFIED;
 	}

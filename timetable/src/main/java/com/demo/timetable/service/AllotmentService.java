@@ -83,11 +83,11 @@ public class AllotmentService {
 	}
 
 	/////////////////////for resetting time table //////////////////////////////
-	
+
 	@Transactional
-	public boolean resetTT() {
+	public boolean resetTT() {		
 		List<String> classesList=ClassesRepository.getIds();
-		List<String> teacherList=TeacherRepository.getIds();
+		List<String> teacherList=TeacherRepository.getIds();		
 		TeacherTTRepository.deleteAll();
 		ClassroomTTRepository.deleteAll();
 		TeacherRepository.reset();
@@ -103,17 +103,297 @@ public class AllotmentService {
 			classroomTTEntity.add(teacher);
 		}
 		TeacherTTRepository.saveAll(teacherTTEntity);
-		ClassroomTTRepository.saveAll(classroomTTEntity);
-		
-		return true;
-		
+		ClassroomTTRepository.saveAll(classroomTTEntity);	
+		return true;	
 	}
+	
+	/*
+	@Transactional
+	public boolean resetTT(String cid) {
+		System.out.print("in side the resettt"+cid);
+		ClassroomTTEntity timetable=ClassroomTTRepository.findByCid(cid);
+		if (timetable == null) {
+	        System.out.println("No timetable found for CID: " + cid);
+	        return false; // Return false indicating failure
+	    }
+		List<ClassroomTTEntity> classroomTimetable = ClassroomTTRepository.findAll();
+		List<TeacherTTEntity> teacherTimetable = TeacherTTRepository.findAll();
+		List<String> allPeriods=new ArrayList<>();
+	    for (int i = 1; i <= 22; i+=2) {
+	        allPeriods.add("p" + i);
+	    }
+	    for(String period : allPeriods) {
+	    	String assigned=getAssignedPeriod(timetable,period);
+	    	if(!assigned.isEmpty()) {
+	    		if(assigned.contains(":")) {
+	    			String[] splittedString=assigned.split(":");
+	    			resetTeacherTimetable(period,splittedString[1],teacherTimetable);
+	    			resetClassroomTimetable(period,splittedString[0],classroomTimetable);
+	    			}
+	    		else 
+	    			resetTeacherTimetable(period,assigned,teacherTimetable);
+	    	}
+	    }
+	    
+	    //System.out.println("before set into database");
+    	//ClassroomTTRepository.deleteById(cid);
+		ClassroomTTRepository.saveAll(classroomTimetable);
+		ClassroomTTEntity newone=new ClassroomTTEntity(cid);
+		ClassroomTTRepository.save(newone);
+        TeacherTTRepository.saveAll(teacherTimetable);
+		return true;
+	}
+	*/
+	////               find the assigned period ///////////////////////
+	public String getAssignedPeriod(ClassroomTTEntity timetable,String period) {
+		String result="";
+		 switch (period) {
+         case "p1":
+        	 result=timetable.getP1();
+             break;
+         case "p2":
+        	 result=timetable.getP2();
+             break;
+         case "p3":
+        	 result=timetable.getP3();
+             break;
+         case "p4":
+        	 result=timetable.getP4();
+             break;
+         case "p5":
+        	 result=timetable.getP5();
+             break;
+         case "p6":
+        	 result=timetable.getP6();
+             break;
+         case "p7":
+        	 result=timetable.getP7();
+             break;
+         case "p8":
+        	 result=timetable.getP8();
+             break;
+         case "p9":
+        	 result=timetable.getP9();
+             break;
+         case "p10":
+        	 result=timetable.getP10();
+             break;
+         case "p11":
+        	 result=timetable.getP11();
+             break;
+         case "p12":
+        	 result=timetable.getP12();
+             break;
+         case "p13":
+        	 result=timetable.getP13();
+             break;
+         case "p14":
+        	 result=timetable.getP14();
+             break;
+         case "p15":
+        	 result=timetable.getP15();
+             break;
+         case "p16":
+        	 result=timetable.getP16();
+             break;
+         case "p17":
+        	 result=timetable.getP17();
+             break;
+         case "p18":
+        	 result=timetable.getP18();
+             break;
+         case "p19":
+        	 result=timetable.getP19();
+             break;
+         case "p20":
+        	 result=timetable.getP20();
+             break;
+         case "p21":
+        	 result=timetable.getP21();
+             break;
+         case "p22":
+        	 result=timetable.getP22();
+             break;
+         default:
+             break; //
+		 }
+		return result;
+	}
+	
+	
+	
+	//////////     for resetiing the classroom timetable for teacher and labs//////////////////
+	
+	
+	public void resetTeacherTimetable(String period,String tid,List<TeacherTTEntity> teacherTimetable) {
+		String result="";
+		for(TeacherTTEntity teacher: teacherTimetable) {
+        if(teacher.getTid().equals(tid)) {
+       	 switch (period) {
+            case "p1":
+           	 teacher.setP1(result);
+                break;
+            case "p2":
+           	 teacher.setP2(result);
+                break;
+            case "p3":
+           	 teacher.setP3(result);
+                break;
+            case "p4":
+           	 teacher.setP4(result);
+                break;
+            case "p5":
+           	 teacher.setP5(result);
+                break;
+            case "p6":
+           	 teacher.setP6(result);
+                break;
+            case "p7":
+           	 teacher.setP7(result);
+                break;
+            case "p8":
+           	 teacher.setP8(result);
+                break;
+            case "p9":
+           	 teacher.setP9(result);
+                break;
+            case "p10":
+           	 teacher.setP10(result);
+                break;
+            case "p11":
+           	 teacher.setP11(result);
+                break;
+            case "p12":
+           	 teacher.setP12(result);
+                break;
+            case "p13":
+           	 teacher.setP13(result);
+                break;
+            case "p14":
+           	 teacher.setP14(result);
+                break;
+            case "p15":
+           	 teacher.setP15(result);
+                break;
+            case "p16":
+           	 teacher.setP16(result);
+                break;
+            case "p17":
+           	 teacher.setP17(result);
+                break;
+            case "p18":
+           	 teacher.setP18(result);
+                break;
+            case "p19":
+           	 teacher.setP19(result);
+                break;
+            case "p20":
+           	 teacher.setP20(result);
+                break;
+            case "p21":
+           	 teacher.setP21(result);
+                break;
+            case "p22":
+           	 teacher.setP22(result);
+                break;
+            default:
+                break; // Invalid period
+        }
+        }
+       }
+		return;
+   }
+
+	
+	
+	public void resetClassroomTimetable(String period,String cid,List<ClassroomTTEntity> classroomTimetable) {
+		String result="";
+		for(ClassroomTTEntity teacher: classroomTimetable) {
+	        if(teacher.getCid().equals(cid)) {
+	       	 switch (period) {
+	            case "p1":
+	           	 teacher.setP1(result);
+	                break;
+	            case "p2":
+	           	 teacher.setP2(result);
+	                break;
+	            case "p3":
+	           	 teacher.setP3(result);
+	                break;
+	            case "p4":
+	           	 teacher.setP4(result);
+	                break;
+	            case "p5":
+	           	 teacher.setP5(result);
+	                break;
+	            case "p6":
+	           	 teacher.setP6(result);
+	                break;
+	            case "p7":
+	           	 teacher.setP7(result);
+	                break;
+	            case "p8":
+	           	 teacher.setP8(result);
+	                break;
+	            case "p9":
+	           	 teacher.setP9(result);
+	                break;
+	            case "p10":
+	           	 teacher.setP10(result);
+	                break;
+	            case "p11":
+	           	 teacher.setP11(result);
+	                break;
+	            case "p12":
+	           	 teacher.setP12(result);
+	                break;
+	            case "p13":
+	           	 teacher.setP13(result);
+	                break;
+	            case "p14":
+	           	 teacher.setP14(result);
+	                break;
+	            case "p15":
+	           	 teacher.setP15(result);
+	                break;
+	            case "p16":
+	           	 teacher.setP16(result);
+	                break;
+	            case "p17":
+	           	 teacher.setP17(result);
+	                break;
+	            case "p18":
+	           	 teacher.setP18(result);
+	                break;
+	            case "p19":
+	           	 teacher.setP19(result);
+	                break;
+	            case "p20":
+	           	 teacher.setP20(result);
+	                break;
+	            case "p21":
+	           	 teacher.setP21(result);
+	                break;
+	            case "p22":
+	           	 teacher.setP22(result);
+	                break;
+	            default:
+	                break; // Invalid period
+	        }
+	        }
+	       }
+			return;
+	   }
+	
+	
+	
+	
 	
 	//////////////////////   for generation of time table  //////////////////////////////////////
  	@Transactional
-	public boolean generateTT() {
+	public boolean generateTT(){
 		
-		List<AllotmentEntity> allotmentList = AllotmentRepository.getAllotmentsverified();
+		List<AllotmentEntity> allotmentList = AllotmentRepository.findAll();
 		List<ClassroomTTEntity> classroomTimetable = ClassroomTTRepository.findAll();
 		List<TeacherTTEntity> teacherTimetable = TeacherTTRepository.findAll();
 		List<SubjectEntity> subjectsList = SubjectRepository.findAll();
@@ -147,8 +427,9 @@ public class AllotmentService {
     			}
 			} 
         	
-        	assignLabClasses(labAllotments, classroomTimetable, teacherTimetable,subjectsList);
+
         	assignTheoryClasses(theoryAllotments, classroomTimetable, teacherTimetable);
+        	assignLabClasses(labAllotments, classroomTimetable, teacherTimetable,subjectsList);
 
            //update in database //
         	ClassroomTTRepository.saveAll(classroomTimetable);
@@ -166,18 +447,22 @@ public class AllotmentService {
 ///////////////////////////     assign honors minors classes ///////////////////////////////////////////
 	 public static void assignMionorsHonorsClasses(List<ClassroomTTEntity> classroomTimetable) {
 		 for(ClassroomTTEntity teacher: classroomTimetable) {
-           	 teacher.setP16("Honors/Minors");
-           	 teacher.setP20("Honors/Minors");
-            }
+			if(teacher.getCid().startsWith("c")) {
+	           	 teacher.setP16("Honors/Minors");
+	           	 teacher.setP20("Honors/Minors");
+	            }
+		 }
 	 }
 	
-	
+	 
 //////////////////////////       assign open elective classes ///////////////////////////////////////////
 	 public static void assignOEClasses(List<ClassroomTTEntity> classroomTimetable) {
 	        for(ClassroomTTEntity teacher: classroomTimetable) {
-               	 teacher.setP15("OE-1");
-               	 teacher.setP19("OE-2");
-	            }
+				if(teacher.getCid().startsWith("c")) {
+		           	 teacher.setP16("OE-1");
+		           	 teacher.setP20("OE-2");
+		            }
+			 }
 	 }
 
 //////////////////////////      assigning lab classes     //////////////////////////////////////////////
@@ -401,6 +686,198 @@ public static boolean isAvailableForLabClass(AllotmentEntity allotment,String pe
 
 
 
+/////////////////////////assign periods lab and store in the local list/////////////////////////////////////////////////
+
+public static void assignPeriodLab(AllotmentEntity allotment, String period, List<TeacherTTEntity> teacherTimetable,String tid, List<ClassroomTTEntity> classroomTimetable,String cid,List<SubjectEntity> subjectsList,String sid) {
+// Update the teacher timetable lab
+updateTeacherTimetableLab(allotment,tid, period, teacherTimetable);
+
+// Update the class-student timetable
+updateClassroomStudentTimetableLab(allotment,cid, period, classroomTimetable);
+
+String cidBySid="";
+for(SubjectEntity subject:subjectsList) {
+if(subject.getSid().equalsIgnoreCase(sid)) cidBySid=subject.getSclass();
+}
+// Update the class-lab timetable
+updateClassroomTimetableLab(allotment,cidBySid, period, classroomTimetable);
+
+}
+
+
+public static void updateTeacherTimetableLab(AllotmentEntity allotment,String id, String period, List<TeacherTTEntity> timetable) {
+for(TeacherTTEntity teacher: timetable) {
+if(teacher.getTid().equals(id)) {
+switch (period) {
+case "p1":
+teacher.setP1(allotment.getId().getCid());
+teacher.setP2(allotment.getId().getCid());
+break;
+case "p3":
+teacher.setP3(allotment.getId().getCid());
+teacher.setP4(allotment.getId().getCid());
+break;
+case "p5":
+teacher.setP5(allotment.getId().getCid());
+teacher.setP6(allotment.getId().getCid());
+break;
+case "p7":
+teacher.setP7(allotment.getId().getCid());
+teacher.setP8(allotment.getId().getCid());
+break;
+case "p9":
+teacher.setP9(allotment.getId().getCid());
+teacher.setP10(allotment.getId().getCid());
+break;
+case "p11":
+teacher.setP11(allotment.getId().getCid());
+teacher.setP12(allotment.getId().getCid());
+break;
+case "p13":
+teacher.setP13(allotment.getId().getCid());
+teacher.setP14(allotment.getId().getCid());
+break;
+case "p15":
+teacher.setP15(allotment.getId().getCid());
+teacher.setP16(allotment.getId().getCid());
+break;
+case "p17":
+teacher.setP17(allotment.getId().getCid());
+teacher.setP18(allotment.getId().getCid());
+break;
+case "p19":
+teacher.setP19(allotment.getId().getCid());
+teacher.setP20(allotment.getId().getCid());
+break;
+case "p21":
+teacher.setP21(allotment.getId().getCid());
+teacher.setP22(allotment.getId().getCid());
+break;
+case "p22":
+break;
+default:
+break; // Invalid period
+}
+}
+}
+}
+
+public static void updateClassroomStudentTimetableLab(AllotmentEntity allotment,String id, String period, List<ClassroomTTEntity> timetable) {
+for(ClassroomTTEntity teacher: timetable) {
+if(teacher.getCid().equals(id)) {
+switch (period) {
+case "p1":
+teacher.setP1(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP2(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p3":
+teacher.setP3(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP4(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p5":
+teacher.setP5(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP6(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p7":
+teacher.setP7(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP8(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p9":
+teacher.setP9(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP10(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p11":
+teacher.setP11(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP12(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p13":
+teacher.setP13(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP14(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p15":
+teacher.setP15(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP16(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p17":
+teacher.setP17(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP18(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p19":
+teacher.setP19(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP20(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p21":
+teacher.setP21(allotment.getId().getSid()+":"+allotment.getTid());
+teacher.setP22(allotment.getId().getSid()+":"+allotment.getTid());
+break;
+case "p22":
+break;
+default:
+break; // Invalid period
+}
+}
+}
+}
+
+
+public static void updateClassroomTimetableLab(AllotmentEntity allotment,String id, String period, List<ClassroomTTEntity> timetable) {
+for(ClassroomTTEntity teacher: timetable) {
+if(teacher.getCid().equals(id)) {
+switch (period) {
+case "p1":
+teacher.setP1(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP2(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p3":
+teacher.setP3(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP4(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p5":
+teacher.setP5(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP6(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p7":
+teacher.setP7(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP8(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p9":
+teacher.setP9(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP10(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p11":
+teacher.setP11(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP12(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p13":
+teacher.setP13(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP14(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p15":
+teacher.setP15(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP16(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p17":
+teacher.setP17(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP18(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p19":
+teacher.setP19(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP20(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p21":
+teacher.setP21(allotment.getId().getCid()+":"+allotment.getTid());
+teacher.setP22(allotment.getId().getCid()+":"+allotment.getTid());
+break;
+case "p22":
+break;
+default:
+break; // Invalid period
+}
+}
+}
+}
+
+
 
 
 
@@ -419,6 +896,7 @@ assignPeriod(allotment, firstAvailablePeriod, teacherTimetable,tid, classroomTim
 }
 }
 }
+
 ////////////////////////availability of theory classes     ////////////////////////////////////////////
 
 public static String findAvailablePeriodForTheory(AllotmentEntity allotment,List<TeacherTTEntity> teacherTimetable,String tid ,List<ClassroomTTEntity> classroomTimetable,String cid, int maxPerDay) {
@@ -641,197 +1119,6 @@ return false; // Invalid period
 return false;
 }
 
-/////////////////////////assign periods lab and store in the local list/////////////////////////////////////////////////
-
-public static void assignPeriodLab(AllotmentEntity allotment, String period, List<TeacherTTEntity> teacherTimetable,String tid, List<ClassroomTTEntity> classroomTimetable,String cid,List<SubjectEntity> subjectsList,String sid) {
-    // Update the teacher timetable lab
-    updateTeacherTimetableLab(allotment,tid, period, teacherTimetable);
-
-    // Update the class-student timetable
-    updateClassroomStudentTimetableLab(allotment,cid, period, classroomTimetable);
-    
-    String cidBySid="";
-	for(SubjectEntity subject:subjectsList) {
-		if(subject.getSid().equalsIgnoreCase(sid)) cidBySid=subject.getSclass();
-	}
-	// Update the class-lab timetable
-    updateClassroomTimetableLab(allotment,cidBySid, period, classroomTimetable);
-    
-}
-
-   
-    public static void updateTeacherTimetableLab(AllotmentEntity allotment,String id, String period, List<TeacherTTEntity> timetable) {
-        for(TeacherTTEntity teacher: timetable) {
-         if(teacher.getTid().equals(id)) {
-        	 switch (period) {
-             case "p1":
-            	 teacher.setP1(allotment.getId().getCid());
-            	 teacher.setP2(allotment.getId().getCid());
-                 break;
-             case "p3":
-            	 teacher.setP3(allotment.getId().getCid());
-            	 teacher.setP4(allotment.getId().getCid());
-                 break;
-             case "p5":
-            	 teacher.setP5(allotment.getId().getCid());
-            	 teacher.setP6(allotment.getId().getCid());
-                 break;
-             case "p7":
-            	 teacher.setP7(allotment.getId().getCid());
-            	 teacher.setP8(allotment.getId().getCid());
-                 break;
-             case "p9":
-            	 teacher.setP9(allotment.getId().getCid());
-            	 teacher.setP10(allotment.getId().getCid());
-                 break;
-             case "p11":
-            	 teacher.setP11(allotment.getId().getCid());
-            	 teacher.setP12(allotment.getId().getCid());
-                 break;
-             case "p13":
-            	 teacher.setP13(allotment.getId().getCid());
-            	 teacher.setP14(allotment.getId().getCid());
-                 break;
-             case "p15":
-            	 teacher.setP15(allotment.getId().getCid());
-            	 teacher.setP16(allotment.getId().getCid());
-                 break;
-             case "p17":
-            	 teacher.setP17(allotment.getId().getCid());
-            	 teacher.setP18(allotment.getId().getCid());
-                 break;
-             case "p19":
-            	 teacher.setP19(allotment.getId().getCid());
-            	 teacher.setP20(allotment.getId().getCid());
-                 break;
-             case "p21":
-            	 teacher.setP21(allotment.getId().getCid());
-            	 teacher.setP22(allotment.getId().getCid());
-                 break;
-             case "p22":
-                 break;
-             default:
-                 break; // Invalid period
-         }
-         }
-        }
-    }
-
-    public static void updateClassroomStudentTimetableLab(AllotmentEntity allotment,String id, String period, List<ClassroomTTEntity> timetable) {
-        for(ClassroomTTEntity teacher: timetable) {
-            if(teacher.getCid().equals(id)) {
-            	switch (period) {
-                case "p1":
-               	 teacher.setP1(allotment.getId().getSid());
-               	 teacher.setP2(allotment.getId().getSid());
-                    break;
-                case "p3":
-               	 teacher.setP3(allotment.getId().getSid());
-               	 teacher.setP4(allotment.getId().getSid());
-                    break;
-                case "p5":
-               	 teacher.setP5(allotment.getId().getSid());
-               	 teacher.setP6(allotment.getId().getSid());
-                    break;
-                case "p7":
-               	 teacher.setP7(allotment.getId().getSid());
-               	 teacher.setP8(allotment.getId().getSid());
-                    break;
-                case "p9":
-               	 teacher.setP9(allotment.getId().getSid());
-               	 teacher.setP10(allotment.getId().getSid());
-                    break;
-                case "p11":
-               	 teacher.setP11(allotment.getId().getSid());
-               	 teacher.setP12(allotment.getId().getSid());
-                    break;
-                case "p13":
-               	 teacher.setP13(allotment.getId().getSid());
-               	 teacher.setP14(allotment.getId().getSid());
-                    break;
-                case "p15":
-               	 teacher.setP15(allotment.getId().getSid());
-               	 teacher.setP16(allotment.getId().getSid());
-                    break;
-                case "p17":
-               	 teacher.setP17(allotment.getId().getSid());
-               	 teacher.setP18(allotment.getId().getSid());
-                    break;
-                case "p19":
-               	 teacher.setP19(allotment.getId().getSid());
-               	 teacher.setP20(allotment.getId().getSid());
-                    break;
-                case "p21":
-               	 teacher.setP21(allotment.getId().getSid());
-               	 teacher.setP22(allotment.getId().getSid());
-                    break;
-                case "p22":
-                    break;
-                default:
-                    break; // Invalid period
-            }
-            }
-           }
-    }
-    
-    
-    public static void updateClassroomTimetableLab(AllotmentEntity allotment,String id, String period, List<ClassroomTTEntity> timetable) {
-        for(ClassroomTTEntity teacher: timetable) {
-            if(teacher.getCid().equals(id)) {
-            	switch (period) {
-            	case "p1":
-               	 teacher.setP1(allotment.getId().getCid());
-               	 teacher.setP2(allotment.getId().getCid());
-                    break;
-                case "p3":
-               	 teacher.setP3(allotment.getId().getCid());
-               	 teacher.setP4(allotment.getId().getCid());
-                    break;
-                case "p5":
-               	 teacher.setP5(allotment.getId().getCid());
-               	 teacher.setP6(allotment.getId().getCid());
-                    break;
-                case "p7":
-               	 teacher.setP7(allotment.getId().getCid());
-               	 teacher.setP8(allotment.getId().getCid());
-                    break;
-                case "p9":
-               	 teacher.setP9(allotment.getId().getCid());
-               	 teacher.setP10(allotment.getId().getCid());
-                    break;
-                case "p11":
-               	 teacher.setP11(allotment.getId().getCid());
-               	 teacher.setP12(allotment.getId().getCid());
-                    break;
-                case "p13":
-               	 teacher.setP13(allotment.getId().getCid());
-               	 teacher.setP14(allotment.getId().getCid());
-                    break;
-                case "p15":
-               	 teacher.setP15(allotment.getId().getCid());
-               	 teacher.setP16(allotment.getId().getCid());
-                    break;
-                case "p17":
-               	 teacher.setP17(allotment.getId().getCid());
-               	 teacher.setP18(allotment.getId().getCid());
-                    break;
-                case "p19":
-               	 teacher.setP19(allotment.getId().getCid());
-               	 teacher.setP20(allotment.getId().getCid());
-                    break;
-                case "p21":
-               	 teacher.setP21(allotment.getId().getCid());
-               	 teacher.setP22(allotment.getId().getCid());
-                    break;
-                case "p22":
-                    break;
-                default:
-                    break; // Invalid period
-            }
-            }
-           }
-    }
-    
     
     ////////////////           assign periods theory and store in the local list      /////////////////////////////////
 

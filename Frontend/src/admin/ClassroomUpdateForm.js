@@ -9,6 +9,7 @@ const ClassroomUpdateForm = () =>
         csem: '',
         ctype: '',
         cbatch: '',
+        cname:'',
       });
       
     
@@ -19,7 +20,7 @@ const ClassroomUpdateForm = () =>
         try {
           // Send a PUT request to update the classroom using the form data
           console.log(cid)
-          let result=await axios.put(`http://localhost:8091/updateclassroom/${cid}/${formData.csem}/${formData.ctype}/${formData.cbatch}`);
+          let result=await axios.put(`http://localhost:8091/updateclassroom/${cid}/${formData.csem}/${formData.ctype}/${formData.cbatch}/${formData.cname}`);
           if (result.data==="OK") {
              alert("updated successfully");
             //else alert("object of time table for classroom is not created")
@@ -58,6 +59,18 @@ const ClassroomUpdateForm = () =>
           id="ctype"
           value={formData.ctype}
           onChange={(e) => setFormData({ ...formData, ctype: e.target.value })}
+        />
+      </label>
+      <br />
+
+      <label>
+        Section:
+        <input
+          type="text"
+          name="cname"
+          id="cname"
+          value={formData.cname}
+          onChange={(e) => setFormData({ ...formData, cname: e.target.value })}
         />
       </label>
       <br />
